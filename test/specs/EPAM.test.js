@@ -9,7 +9,7 @@ describe('Test suite EPAM', async () => {
     expect(pageTitle).to.equal('EPAM | Software Engineering & Product Development Services');
   });
 
-  it('2. Switcher to dark/light mode', async () => {
+  it('2. Check the ability to switch Light / Dark mode', async () => {
     await browser.url('https://epam.com/');
     const headerElement = $(".header__inner");
     const initialHeaderColor = await headerElement.getCSSProperty("color");
@@ -19,7 +19,7 @@ describe('Test suite EPAM', async () => {
       expect(updatedHeaderColor).not.equal(initialHeaderColor);
   });
 
-  it('3. Check the Ukrainian localization', async () => {
+  it('3. Check that allow to change language to UA', async () => {
     await browser.url('http://www.epam.com');
     await browser.maximizeWindow();
     await $('#onetrust-accept-btn-handler').click();
@@ -50,7 +50,7 @@ describe('Test suite EPAM', async () => {
   it("5. Check that allow to switch location list by region", async () => {
     const locationsArea = $(".tabs-23__ul.js-tabs-links-list");
     await locationsArea.scrollIntoView();
-    const locationGroups = await locationsArea.$$(".tabs-23__ul-wrapper .tabs-23__link")
+    const locationGroups = await locationsArea.$$(".tabs-23__ul-wrapper .tabs-23__link");
     const locationGroupsNames = await Promise.all(locationGroups.map(async (element) => {
       return await element.getText();
     }));
@@ -73,7 +73,7 @@ describe('Test suite EPAM', async () => {
     };
   });
 
-  it('7. Check validation in fields', async () => {
+  it('7. Check form fields validation', async () => {
     await browser.url('https://www.epam.com/about/who-we-are/contact');
     await browser.maximizeWindow();
     const elementToClick = $('.button-ui');
@@ -105,7 +105,7 @@ describe('Test suite EPAM', async () => {
       expect(currentURL).to.equal(expectedURL);
   });
 
-  it('9. Check download', async () => {
+  it('9. Check that allows to download report', async () => {
     const path = require('path');
     const downloadsFolder = 'C://Users//ggulo//Downloads';
     await browser.url('https://www.epam.com/about');
