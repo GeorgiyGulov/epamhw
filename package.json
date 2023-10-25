@@ -1,0 +1,24 @@
+{
+  "name": "epamhw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "wdio": "wdio run ./wdio.conf.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.10",
+    "chromedriver": "^118.0.1",
+    "mocha": "^10.2.0",
+    "wdio": "^6.0.1"
+  },
+  "devDependencies": {
+    "@wdio/browser-runner": "^8.20.5",
+    "@wdio/cli": "^8.20.5",
+    "@wdio/mocha-framework": "^8.20.3",
+    "@wdio/spec-reporter": "^8.20.0"
+  }
+}
