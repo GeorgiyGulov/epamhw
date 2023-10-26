@@ -47,7 +47,7 @@ describe('Test suite EPAM', async () => {
     }
   });
 
-  it("5. Check that allow to switch location list by region", async () => {
+  it('5. Check that allow to switch location list by region', async () => {
     const locationsArea = $(".tabs-23__ul.js-tabs-links-list");
     await locationsArea.scrollIntoView();
     const locationGroups = await locationsArea.$$(".tabs-23__ul-wrapper .tabs-23__link");
@@ -72,6 +72,23 @@ describe('Test suite EPAM', async () => {
       expect(filteredCountries[i]).to.equal(expectedCountriesNames[i], `Country ${i + 1} has the correct name.`);
     };
   });
+
+  it('6. Check the search function', async () => {
+    await browser.url("https://www.epam.com/");
+    await browser.maximizeWindow();
+    await $(".search-icon").click();
+    const searchValue = "blockchain"
+    await $("#new_form_search").setValue(`${searchValue}`);
+    await $(".bth-text-layer").click();
+    const searchResults = $(".search-results__items");
+    const searchResultsItems = await searchResults.$$(".search-results__title");
+      expect(searchResultsItems.length).to.be.above(0);
+    const searchResultsDescription = await searchResults.$$(".search-results__description");
+    for (const result of searchResultsDescription) {
+        const resultText = (await result.getText()).toLowerCase();
+      expect(resultText).to.include(`${searchValue}`);
+    };
+});
 
   it('7. Check form fields validation', async () => {
     await browser.url('https://www.epam.com/about/who-we-are/contact');
